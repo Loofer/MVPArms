@@ -3,4 +3,9 @@
     <declare-styleable name="AutoTabLayout">
         <attr name="auto_textSize_base_width" format="boolean"></attr>
     </declare-styleable>
+    <!-- circleimageview -->
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension"/>
+        <attr name="border_color" format="color"/>
+    </declare-styleable>
 </resources>

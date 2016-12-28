@@ -71,7 +71,7 @@ public class HomeActivity extends WEActivity<HomePresenter> implements HomeContr
     }
 
 
-    @OnClick({R.id.btn_click, R.id.btn_toolbar, R.id.btn_no_bar})
+    @OnClick({R.id.btn_click, R.id.btn_toolbar, R.id.btn_no_bar, R.id.btn_about})
     public void click(View view) {
         switch (view.getId()) {
             case R.id.btn_click:
@@ -82,6 +82,9 @@ public class HomeActivity extends WEActivity<HomePresenter> implements HomeContr
                 break;
             case R.id.btn_no_bar:
                 UiUtils.startActivity(this, NoBarActivity.class);
+                break;
+            case R.id.btn_about:
+                UiUtils.startActivity(this, AboutActivity.class);
                 break;
         }
     }
