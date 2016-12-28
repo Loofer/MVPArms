@@ -55,6 +55,7 @@ public class StatusBarManager {
             if (TintType.PURECOLOR == mTintType) {
                 mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 mActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                mActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 mActivity.getWindow().setStatusBarColor(UiUtils.calculateColorWithAlpha(mStatusBarColor, mAlpha));//设置状态栏颜色
             } else if (TintType.GRADIENT == mTintType) {
                 mActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

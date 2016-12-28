@@ -171,10 +171,7 @@ public abstract class WEActivity<P extends BasePresenter> extends BaseActivity<P
         if (mToolbar != null) {
             mToolbar.setBackgroundColor(UiUtils.getColor(color));
         }
-        //状态栏背景相关配置
-        new StatusBarManager.builder(this)
-                .setStatusBarColor(color)
-                .create();
+        setStatusBarColor(color).create();
         //沉浸式状态栏，若出现toast上移的情况请打开这段注释并去掉style文件中的fitsSystemWindows属性
         // http://www.jianshu.com/p/0acc12c29c1b
 //        ViewGroup contentFrameLayout = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
@@ -183,6 +180,14 @@ public abstract class WEActivity<P extends BasePresenter> extends BaseActivity<P
 //            parentView.setFitsSystemWindows(true);
 //        }
     }
+
+    protected StatusBarManager.builder setStatusBarColor(int color) {
+        //状态栏背景相关配置
+        return new StatusBarManager.builder(this)
+                .setAlpha(0)
+                .setStatusBarColor(color);
+    }
+
 
     /**
      * 设置左边标题图标
@@ -251,7 +256,7 @@ public abstract class WEActivity<P extends BasePresenter> extends BaseActivity<P
         return true;
     }
 
-    private void checkToolbar(Toolbar toolbar){
+    private void checkToolbar(Toolbar toolbar) {
         if (toolbar == null) {
             throw new IllegalStateException("if you want use toolbar do not override useToolbar method! ");
         }
