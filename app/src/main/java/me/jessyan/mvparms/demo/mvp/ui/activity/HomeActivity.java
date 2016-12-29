@@ -141,7 +141,7 @@ public class HomeActivity extends WEActivity<HomePresenter> implements HomeContr
 
     @Override
     protected void initData() {
-
+        mPresenter.getGank();
     }
 
 

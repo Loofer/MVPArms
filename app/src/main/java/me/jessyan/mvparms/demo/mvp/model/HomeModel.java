@@ -5,9 +5,15 @@ import android.app.Application;
 import com.google.gson.Gson;
 import com.jess.arms.mvp.BaseModel;
 
+import java.util.List;
+
 import me.jessyan.mvparms.demo.mvp.contract.HomeContract;
 import me.jessyan.mvparms.demo.mvp.model.api.cache.CacheManager;
 import me.jessyan.mvparms.demo.mvp.model.api.service.ServiceManager;
+import me.jessyan.mvparms.demo.mvp.model.entity.Gank;
+import me.jessyan.mvparms.demo.mvp.model.entity.GankBaseJson;
+import rx.Observable;
+import rx.functions.Func1;
 
 
 /**
@@ -22,15 +28,15 @@ import me.jessyan.mvparms.demo.mvp.model.api.service.ServiceManager;
 /**
  * ============================================================
  * 版权： x x 版权所有（c）2016
- *
+ * <p>
  * 作者：Loofer
  * 版本：1.0
  * 创建日期 ：2016/12/28 16:58.
  * 描述：
- *
+ * <p>
  * 注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
  * Modified Date Modify Content:
- *
+ * <p>
  * ==========================================================
  */
 public class HomeModel extends BaseModel<ServiceManager, CacheManager> implements HomeContract.Model {
@@ -41,6 +47,18 @@ public class HomeModel extends BaseModel<ServiceManager, CacheManager> implement
         super(serviceManager, cacheManager);
         this.mGson = gson;
         this.mApplication = application;
+    }
+
+    @Override
+    public Observable<List<Gank>> getGanks(String categery, int pageSize, int page) {
+        return mServiceManager.getHomeService()
+                .getGanks(categery, pageSize, page)
+                .map(new Func1<GankBaseJson<List<Gank>>, List<Gank>>() {
+            @Override
+            public List<Gank> call(GankBaseJson<List<Gank>> listGankBaseJson) {
+                return listGankBaseJson.getData();
+            }
+        });
     }
 
     @Override

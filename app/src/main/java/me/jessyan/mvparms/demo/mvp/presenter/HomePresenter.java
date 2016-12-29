@@ -2,16 +2,24 @@ package me.jessyan.mvparms.demo.mvp.presenter;
 
 import android.app.Application;
 
+import com.google.gson.Gson;
 import com.jess.arms.base.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
+import com.jess.arms.utils.LogUtils;
 import com.jess.arms.widget.imageloader.ImageLoader;
 import com.tbruyelle.rxpermissions.RxPermissions;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import me.jessyan.mvparms.demo.mvp.contract.HomeContract;
+import me.jessyan.mvparms.demo.mvp.model.entity.Gank;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 /**
@@ -27,15 +35,15 @@ import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 /**
  * ============================================================
  * 版权： x x 版权所有（c）2016
- *
+ * <p>
  * 作者：Loofer
  * 版本：1.0
  * 创建日期 ：2016/12/28 16:59.
  * 描述：
- *
+ * <p>
  * 注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
  * Modified Date Modify Content:
- *
+ * <p>
  * ==========================================================
  */
 @ActivityScope
@@ -56,6 +64,28 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
         this.mRxPermissions = rxPermissions;
         this.mImageLoader = imageLoader;
         this.mAppManager = appManager;
+    }
+
+    public void getGank() {
+        mModel.getGanks("Android", 10, 1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<List<Gank>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<Gank> ganks) {
+                        LogUtils.debugInfo(new Gson().toJson(ganks));
+                    }
+                });
     }
 
     @Override

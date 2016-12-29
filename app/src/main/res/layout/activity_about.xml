@@ -87,7 +87,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
                     android:autoLink="web"
-                    android:text="CSDN：http://blog.csdn.net/sdkfjksf"/>
+                    android:text="简书：http://www.jianshu.com/loofer"/>
 
             </android.support.v7.widget.CardView>
 
@@ -127,7 +127,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
                     android:autoLink="web"
-                    android:text="数据来源：干货集中营http://gank.io/"/>
+                    android:text="Copy right (c) 2016"/>
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
