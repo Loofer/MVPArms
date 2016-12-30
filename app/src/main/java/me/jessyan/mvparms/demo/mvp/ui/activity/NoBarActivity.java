@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.jess.arms.utils.StatusBarManager;
+import com.jess.arms.utils.StatusBarUtil;
 import com.jess.arms.utils.UiUtils;
 
 import common.AppComponent;
@@ -55,18 +55,14 @@ public class NoBarActivity extends WEActivity<NoBarPresenter> implements NoBarCo
     }
 
     @Override
-    protected View initView() {
-        setTitleBgColor(R.color.white);
+    protected View initLayout() {
         return LayoutInflater.from(this).inflate(R.layout.activity_no_bar, null, false);
     }
 
 
     @Override
-    protected StatusBarManager.builder setStatusBarColor(int color) {
-        return new StatusBarManager.builder(this)
-                .setAlpha(90)
-                .setStatusBarColor(color)
-                .setTintType(StatusBarManager.TintType.PURECOLOR);
+    protected void setStatusBar() {
+        StatusBarUtil.setColor(this, R.color.white);
     }
 
     @Override

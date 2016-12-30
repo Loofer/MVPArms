@@ -2,9 +2,11 @@ package com.jess.arms.utils;
 
 import android.app.Activity;
 import android.os.Build;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
-import static com.jess.arms.widget.StatusBarView.addStatusBarView;
+import com.jess.arms.widget.StatusBarView;
 
 /**
  * ============================================================
@@ -67,6 +69,36 @@ public class StatusBarManager {
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             addStatusBarView(mActivity, UiUtils.calculateColorWithAlpha(mStatusBarColor, mAlpha));
+        }
+    }
+
+
+    /**
+     * 生成一个和状态栏大小相同的矩形条
+     *
+     * @return 状态栏矩形条
+     */
+    private StatusBarView createStatusBarView(Activity activity, int color) {
+        StatusBarView statusBarView = new StatusBarView(activity);
+        statusBarView.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, UiUtils.getStatusBarHeight()));
+        statusBarView.setBackgroundColor(color);
+        return statusBarView;
+    }
+
+    /**
+     * 添加状态栏
+     *
+     * @param activity
+     * @param color
+     */
+    public void addStatusBarView(Activity activity, int color) {
+        ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+        if (decorView.getChildAt(0) instanceof StatusBarView) {
+            decorView.getChildAt(0).setBackgroundColor(color);
+        } else {
+            StatusBarView statusView = createStatusBarView(activity, color);
+            decorView.addView(statusView);
         }
     }
 

@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 
 import com.jess.arms.widget.StatusBarView;
 
+import static com.jess.arms.utils.UiUtils.getColor;
+
 /**
  * ============================================================
  * 版权： xx有限公司 版权所有（c）2016
@@ -31,7 +33,7 @@ import com.jess.arms.widget.StatusBarView;
 
 public class StatusBarUtil {
 
-    public static final int DEFAULT_STATUS_BAR_ALPHA = 112;
+    public static final int DEFAULT_STATUS_BAR_ALPHA = 0;
 
     /**
      * 设置状态栏颜色
@@ -39,8 +41,13 @@ public class StatusBarUtil {
      * @param activity 需要设置的 activity
      * @param color    状态栏颜色值
      */
-    public static void setColor(Activity activity, @ColorInt int color) {
-        setColor(activity, color, DEFAULT_STATUS_BAR_ALPHA);
+    public static void setColor(Activity activity, Object color) {
+        if (color instanceof String) {// "#666666"
+            setColor(activity, Color.parseColor((String) color), DEFAULT_STATUS_BAR_ALPHA);
+        } else if (color instanceof Integer) {
+            if ((Integer) color > 0)// R.string.app_color
+                setColor(activity, getColor(Integer.parseInt(color.toString())), DEFAULT_STATUS_BAR_ALPHA);
+        } else throw new IllegalStateException("The current color is not found");
     }
 
     /**
@@ -130,7 +137,7 @@ public class StatusBarUtil {
 
     /**
      * 使状态栏半透明
-     *
+     * <p>
      * 适用于图片作为背景的界面,此时需要图片填充到状态栏
      *
      * @param activity 需要设置的activity
@@ -141,7 +148,7 @@ public class StatusBarUtil {
 
     /**
      * 使状态栏半透明
-     *
+     * <p>
      * 适用于图片作为背景的界面,此时需要图片填充到状态栏
      *
      * @param activity       需要设置的activity
@@ -157,7 +164,7 @@ public class StatusBarUtil {
 
     /**
      * 针对根布局是 CoordinatorLayout, 使状态栏半透明
-     *
+     * <p>
      * 适用于图片作为背景的界面,此时需要图片填充到状态栏
      *
      * @param activity       需要设置的activity
@@ -186,7 +193,7 @@ public class StatusBarUtil {
 
     /**
      * 使状态栏透明(5.0以上半透明效果,不建议使用)
-     *
+     * <p>
      * 适用于图片作为背景的界面,此时需要图片填充到状态栏
      *
      * @param activity 需要设置的activity

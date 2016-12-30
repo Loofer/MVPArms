@@ -69,7 +69,7 @@ public class AboutActivity extends WEActivity<AboutPresenter> implements AboutCo
     }
 
     @Override
-    protected View initView() {
+    protected View initLayout() {
         return LayoutInflater.from(this).inflate(R.layout.activity_about, null, false);
     }
 

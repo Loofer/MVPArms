@@ -55,7 +55,7 @@ public class ToolBarActivity extends WEActivity<ToolBarPresenter> implements Too
     }
 
     @Override
-    protected View initView() {
+    protected View initLayout() {
         setTitleBgColor(R.color.colorPrimary);
         setLogoIcon(R.mipmap.ic_launcher);
         setMainTitle("主标题");

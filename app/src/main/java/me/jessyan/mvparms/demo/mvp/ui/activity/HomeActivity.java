@@ -59,7 +59,7 @@ public class HomeActivity extends WEActivity<HomePresenter> implements HomeContr
     }
 
     @Override
-    protected View initView() {
+    protected View initLayout() {
         setTitleNavigationIcon(R.drawable.tool_home);
         setTitleBgColor(R.color.colorPrimary);
         setLogoIcon(R.mipmap.ic_launcher);
@@ -138,6 +138,8 @@ public class HomeActivity extends WEActivity<HomePresenter> implements HomeContr
         }
 
     }
+
+
 
     @Override
     protected void initData() {

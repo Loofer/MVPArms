@@ -84,10 +84,12 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
 
         if (useEventBus())//如果要使用eventbus请将此方法返回true
             EventBus.getDefault().register(this);//注册到事件主线
-        setContentView(useToolbar() ? initBaseView() : initView());
+        setContentView(useToolbar() ? initBaseLayout() : initLayout());
+
         //绑定到butterknife
         mUnbinder = ButterKnife.bind(this);
         ComponentInject();//依赖注入
+        setStatusBar();
         initData();
     }
 
@@ -142,9 +144,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
     }
 
 
-    protected abstract View initView();
+    protected abstract View initLayout();
 
-    protected abstract View initBaseView();
+    protected abstract View initBaseLayout();
+    protected abstract void setStatusBar();
 
     protected abstract void initData();
 

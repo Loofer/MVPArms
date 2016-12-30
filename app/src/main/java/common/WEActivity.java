@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.mvp.BasePresenter;
-import com.jess.arms.utils.StatusBarManager;
+import com.jess.arms.utils.StatusBarUtil;
 import com.jess.arms.utils.UiUtils;
 
 import java.lang.reflect.Method;
@@ -35,7 +35,7 @@ public abstract class WEActivity<P extends BasePresenter> extends BaseActivity<P
 
 
     @Override
-    protected View initBaseView() {
+    protected View initBaseLayout() {
         View baseView = View.inflate(this, R.layout.common_base, null);
         mContent = (FrameLayout) baseView.findViewById(R.id.fl_content);
         mToolbar = (Toolbar) baseView.findViewById(R.id.common_toolbar);
@@ -48,7 +48,7 @@ public abstract class WEActivity<P extends BasePresenter> extends BaseActivity<P
 
         initToolBarlistener();
 
-        mContent.addView(initView());
+        mContent.addView(initLayout());
         return baseView;
     }
 
@@ -171,21 +171,14 @@ public abstract class WEActivity<P extends BasePresenter> extends BaseActivity<P
         if (mToolbar != null) {
             mToolbar.setBackgroundColor(UiUtils.getColor(color));
         }
-        setStatusBarColor(color).create();
-        //沉浸式状态栏，若出现toast上移的情况请打开这段注释并去掉style文件中的fitsSystemWindows属性
-        // http://www.jianshu.com/p/0acc12c29c1b
-//        ViewGroup contentFrameLayout = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
-//        View parentView = contentFrameLayout.getChildAt(0);
-//        if (parentView != null) {
-//            parentView.setFitsSystemWindows(true);
-//        }
+//        StatusBarUtil.setColor(this, color);
     }
 
-    protected StatusBarManager.builder setStatusBarColor(int color) {
-        //状态栏背景相关配置
-        return new StatusBarManager.builder(this)
-                .setAlpha(0)
-                .setStatusBarColor(color);
+    @Override
+    protected void setStatusBar() {
+        //https://github.com/laobie/StatusBarUtil
+        // http://www.jianshu.com/p/0acc12c29c1b
+        StatusBarUtil.setColor(this, R.color.colorPrimary);
     }
 
 

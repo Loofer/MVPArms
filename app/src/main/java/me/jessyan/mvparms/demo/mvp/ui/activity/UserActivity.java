@@ -54,7 +54,7 @@ public class UserActivity extends WEActivity<UserPresenter> implements UserContr
     }
 
     @Override
-    protected View initView() {
+    protected View initLayout() {
 //        setTitleNavigationIcon(R.drawable.tool_home);
 //        setTitleBgColor(R.color.colorPrimary);
 //        setLogoIcon(R.mipmap.ic_launcher);
