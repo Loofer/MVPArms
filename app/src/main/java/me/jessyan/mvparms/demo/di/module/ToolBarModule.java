@@ -23,7 +23,7 @@ import me.jessyan.mvparms.demo.mvp.model.api.service.ServiceManager;
 
 /**
  * ============================================================
- * 版权： Blue mobile 版权所有（c）2016
+ * 版权： x x 版权所有（c）2016
  *
  * 作者：Loofer
  * 版本：1.0
